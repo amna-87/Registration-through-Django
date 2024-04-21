@@ -22,6 +22,7 @@ urlpatterns = [
     path('', views.SignupPage, name='signup'),
     path('Login/', views.LoginPage, name='login'),
     path('Home/', views.HomePage, name='home'),
-    path('logout/', views.LogoutPage, name='logout')  
-    
+    path('logout/', views.LogoutPage, name='logout')  ,
+    path('About/', views.AboutPage, name='about'),
+    path('Test-Personality/', views.TestPersonalityPage, name='testPersonality'),
 ]

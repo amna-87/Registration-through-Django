@@ -1,23 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <!-- Design by foolishdeveloper.com -->
     <title>Home Page</title>
+    <!-- Bootstrap CDN -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!--Stylesheet-->
+    <style media="screen">
+      body {
+        background-color: #080710;
+        color: #ffffff;
+      }
+
+      .background {
+        width: 430px;
+        height: 520px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+      }
+
+      .background .shape {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        border-radius: 50%;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        /* background: red; */
+        text-align: center;
+        justify-content: space-between;
+        height: 100vh;
+      }
+      .box {
+        background-color: aqua;
+        justify-content: center;
+        text-align: center;
+      }
+      .content {
+        text-align: center;
+        /* margin-top: 100px; */
+      }
+
+      .content h1 {
+        font-size: 48px;
+        font-weight: 500;
+        margin-bottom: 30px;
+      }
+
+      .content p {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+
+      .navbar {
+        background-color: #080710 !important;
+        margin-bottom: 20px; /* Adjust margin to create space between navbar and content */
+      }
+
+      .navbar-brand {
+        color: #ffffff !important;
+        font-weight: 600;
+      }
+
+      .navbar-nav .nav-link {
+        color: #ffffff !important;
+      }
+
+      .footer {
+        background-color: #080710;
+        color: #ffffff;
+        padding: 30px 0;
+        text-align: center;
+        margin-top: auto; /* Push footer to the bottom */
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello to Home Page</h1>
-    <a href="{% url 'logout' %}" class="btn btn-primary">Logout<a>
+    <div class="container">
+      <div>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <a class="navbar-brand" href="#">Personality Traits Assessment</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'testPersonality' %}"
+                  >Test your personality</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="box">
+        <div class="content">
+          <h1>Welcome to Our App</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
+            risus non aliquam consequat.
+          </p>
+          <a href="{% url 'testPersonality' %}" class="btn btn-primary"
+            >Test your personality</a
+          >
+          <a href="{% url 'about' %}" class="btn btn-primary">About</a>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>&copy; 2024 Personality Traits Assessment. All rights reserved.</p>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS, placed at the end of the document for faster loading -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>
