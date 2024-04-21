@@ -146,5 +146,5 @@ def AboutPage(request):
 
 
 def TestPersonalityPage(request):
-    prediction()
+    # prediction()
     return render (request, 'testPersonality.html')
