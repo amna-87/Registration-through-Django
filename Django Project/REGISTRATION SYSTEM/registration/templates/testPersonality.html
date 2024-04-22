@@ -58,11 +58,17 @@
         border-radius: 5px;
         cursor: pointer;
       }
+
+      #stopRecording {
+        display: none; /* Hide the stop button by default */
+      }
     </style>
   </head>
   <body>
     <div id="left">
       <video id="cameraView" autoplay muted></video>
+      <video id="recordedVideo" controls style="display: none"></video>
+      <!-- Define the recorded video element -->
       <div id="timeline">Timeline here</div>
     </div>
     <div id="right">
@@ -77,7 +83,7 @@
       const startRecordingButton = document.getElementById("startRecording");
       const stopRecordingButton = document.getElementById("stopRecording");
       const cameraView = document.getElementById("cameraView");
-      const recordedVideo = document.createElement("video"); // Create a video element for recorded video
+      const recordedVideo = document.getElementById("recordedVideo"); // Get the recorded video element
       let mediaRecorder;
       let chunks = [];
 
@@ -89,7 +95,9 @@
           });
           cameraView.srcObject = stream;
           cameraView.style.display = "block";
+          recordedVideo.style.display = "none";
           startRecordingButton.style.display = "none";
+          stopRecordingButton.style.display = "inline-block"; // Display the stop button when recording starts
           mediaRecorder = new MediaRecorder(stream);
           mediaRecorder.ondataavailable = handleDataAvailable;
           mediaRecorder.start();
@@ -110,16 +118,20 @@
           mediaRecorder.onstop = () => {
             const blob = new Blob(chunks, { type: "video/webm" });
             const url = URL.createObjectURL(blob);
-            recordedVideo.src = url; // Set the recorded video as the source of the new video element
-            recordedVideo.controls = true; // Enable controls for playback
-            document.getElementById("left"); // Append the recorded video to the left container
-            cameraView.style.display = "none";
+            cameraView.src = url; // Set the recorded video as the source of the camera view
+            cameraView.style.display = "block"; // Make the camera view visible again
             startRecordingButton.style.display = "inline-block";
-            stopRecordingButton.style.display = "none";
+            stopRecordingButton.style.display = "none"; // Hide the stop button when recording stops
             chunks = [];
             // Stop the camera stream
             const tracks = cameraView.srcObject.getTracks();
             tracks.forEach((track) => track.stop());
+
+            // Play the recorded video
+            recordedVideo.src = url;
+            recordedVideo.controls = true;
+            cameraView.style.display = "none";
+            recordedVideo.style.display = "block";
           };
         }
       }
