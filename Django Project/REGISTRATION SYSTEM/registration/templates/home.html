@@ -23,51 +23,49 @@
         background-color: #080710;
         color: #ffffff;
       }
-
-      .background {
-        width: 430px;
-        height: 520px;
-        position: absolute;
-        transform: translate(-50%, -50%);
-        left: 50%;
-        top: 50%;
-      }
-
-      .background .shape {
-        height: 200px;
-        width: 200px;
-        position: absolute;
-        border-radius: 50%;
-      }
       .container {
         display: flex;
         flex-direction: column;
-        /* background: red; */
         text-align: center;
         justify-content: space-between;
         height: 100vh;
       }
       .box {
-        background-color: aqua;
         justify-content: center;
         text-align: center;
       }
       .content {
         text-align: center;
-        /* margin-top: 100px; */
       }
-
       .content h1 {
         font-size: 48px;
         font-weight: 500;
         margin-bottom: 30px;
       }
+      .btn {
+        border-radius: 15px;
 
+        font-weight: 600;
+        border: none;
+        background-color: #ffffff;
+        cursor: pointer;
+      }
+      .btn:hover {
+        border: 2px solid #fff;
+        color: #fff !important;
+        background-color: #080710;
+      }
+
+      .btn a {
+        text-decoration: none;
+      }
       .content p {
         font-size: 18px;
         margin-bottom: 30px;
       }
-
+      .about p {
+        text-align: center;
+      }
       .navbar {
         background-color: #080710 !important;
         margin-bottom: 20px; /* Adjust margin to create space between navbar and content */
@@ -87,7 +85,6 @@
         color: #ffffff;
         padding: 30px 0;
         text-align: center;
-        margin-top: auto; /* Push footer to the bottom */
       }
     </style>
   </head>
@@ -131,15 +128,21 @@
 
       <div class="box">
         <div class="content">
-          <h1>Welcome to Our App</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
-            risus non aliquam consequat.
-          </p>
-          <a href="{% url 'testPersonality' %}" class="btn btn-primary"
-            >Test your personality</a
-          >
-          <a href="{% url 'about' %}" class="btn btn-primary">About</a>
+          <h1>Welcome</h1>
+          <div class="about">
+            <p>
+              A Web app which is developed for testing the traits of a candidate
+              named as "Personality Traits Assessment", by using Deep Learning
+              Models. Models are trained to prediact Big Five traits from a
+              video of a candidate.<br />
+            </p>
+          </div>
+          <button class="btn">
+            <a href="{% url 'testPersonality' %}">Test your personality</a>
+          </button>
+          <button class="btn">
+            <a href="{% url 'about' %}">About</a>
+          </button>
         </div>
       </div>
 
