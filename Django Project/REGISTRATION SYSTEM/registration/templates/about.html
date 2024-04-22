@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,7 +42,6 @@
         font-size: 24px;
         font-weight: bold;
       }
-
       .navbar-nav {
         display: flex;
         flex-direction: row;
@@ -65,9 +65,9 @@
       p {
         text-align: center;
       }
-.about p{
-  text-align: start;
-}
+      .about p{
+      text-align: start;
+      }
 
 .team {
   margin: auto;
@@ -150,7 +150,7 @@
         </p>
         <div class="team center">
           <div class="team-member">
-            <img src="https://via.placeholder.com/80" alt="Team Member 1" />
+            <img src="{% static 'member.jpg' %}" alt="Team Member 1" />
             <div>
               <h2>Summaira Nosheen</h2>
               <p>

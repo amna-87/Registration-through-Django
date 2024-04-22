@@ -10,30 +10,35 @@
         padding: 0;
         display: flex;
         height: 100vh;
+        color: #333;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
       }
 
-      #left {
+      #left,
+      #right {
         flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #f0f0f0;
-        position: relative;
+        padding: 20px;
+      }
+
+      #left {
+        background-color: #080710;
       }
 
       #right {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #ccc;
+        background-color: #0b340c;
+        color: #fff;
       }
 
       video {
         width: 100%;
         height: auto;
         border: 1px solid #ccc;
+        margin-bottom: 10px;
       }
 
       #cameraView {
@@ -41,37 +46,53 @@
       }
 
       #timeline {
-        position: absolute;
-        bottom: 20px;
-        width: 100%;
+        margin-top: auto;
         text-align: center;
-        color: #333;
       }
 
-      #startRecording,
-      #stopRecording {
+      h3,
+      p {
+        margin: 10px;
+        text-align: center;
+      }
+
+      button {
         padding: 10px 20px;
         font-size: 16px;
-        background-color: #4caf50;
-        color: white;
+        background-color: #333;
+        color: #fff;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: #555;
       }
 
       #stopRecording {
-        display: none; /* Hide the stop button by default */
+        display: none;
+      }
+
+      #recordedVideo {
+        display: none;
       }
     </style>
   </head>
   <body>
     <div id="left">
       <video id="cameraView" autoplay muted></video>
-      <video id="recordedVideo" controls style="display: none"></video>
-      <!-- Define the recorded video element -->
-      <div id="timeline">Timeline here</div>
+      <video id="recordedVideo" controls></video>
     </div>
     <div id="right">
+      <h3>Video Recording</h3>
+      <p>
+        For your personality traits assessment, we need your video recording.
+        You are requested to face the camera as if you are talking to your
+        friends and give us a short introduction about yourself in
+        <strong>15 seconds</strong>.
+      </p>
       <button id="startRecording" onclick="startRecording()">
         Start Recording
       </button>
@@ -101,6 +122,8 @@
           mediaRecorder = new MediaRecorder(stream);
           mediaRecorder.ondataavailable = handleDataAvailable;
           mediaRecorder.start();
+          // Automatically stop recording after 15 seconds
+          setTimeout(stopRecording, 15000);
         } catch (error) {
           console.error("Error accessing media devices: ", error);
         }
