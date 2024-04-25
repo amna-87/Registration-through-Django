@@ -6,16 +6,18 @@ from joblib import load
 import librosa
 import librosa.display
 from typing import  Tuple
+# import models.py
 
 
 
-# model_path = './models/saved-model.keras'
-# # print("Absolute model path:", model_path)
 
-# combined_network = keras.models.load_model(model_path)
+model_path = './models/saved-model.h5'
+# print("Absolute model path:", model_path)
+
+combined_network = tf.keras.models.load_model(model_path, call_endpoint='serving_default')
 
 
-# print("Absolute 2 model path:", model_path)
+print("Absolute 2 model path:", model_path)
 
 def preprocess_audio_series(raw_data: np.ndarray) -> np.ndarray:
     N, M = 24, 1319

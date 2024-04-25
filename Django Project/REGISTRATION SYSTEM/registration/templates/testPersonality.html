@@ -91,7 +91,8 @@
         For your personality traits assessment, we need your video recording.
         You are requested to face the camera as if you are talking to your
         friends and give us a short introduction about yourself in
-        <strong>15 seconds</strong>.
+        <strong>15 seconds</strong>. The video recording will stop automatically
+        after 18 sec
       </p>
       <button id="startRecording" onclick="startRecording()">
         Start Recording
@@ -122,8 +123,8 @@
           mediaRecorder = new MediaRecorder(stream);
           mediaRecorder.ondataavailable = handleDataAvailable;
           mediaRecorder.start();
-          // Automatically stop recording after 15 seconds
-          setTimeout(stopRecording, 15000);
+          // Automatically stop recording after 18 seconds
+          setTimeout(stopRecording, 18000);
         } catch (error) {
           console.error("Error accessing media devices: ", error);
         }
