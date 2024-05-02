@@ -55,3 +55,7 @@ def AboutPage(request):
 def TestPersonalityPage(request):
     # video_processing.prediction(path)
     return render (request, 'testPersonality.html')
+
+def ResultsPage(request):
+    # video_processing.prediction(path)
+    return render (request, 'results.html')

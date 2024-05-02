@@ -8,13 +8,19 @@
       body {
         margin: 0;
         padding: 0;
-        display: flex;
-        height: 100vh;
         color: #333;
+        height: 100vh;
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
       }
-
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .uper {
+        display: flex;
+        flex: 1;
+      }
       #left,
       #right {
         flex: 1;
@@ -42,12 +48,11 @@
       }
 
       #cameraView {
-        display: none;
+        display: block; /* Display the camera view initially */
       }
 
-      #timeline {
-        margin-top: auto;
-        text-align: center;
+      #moodSelector {
+        margin-top: 20px;
       }
 
       h3,
@@ -78,36 +83,86 @@
       #recordedVideo {
         display: none;
       }
+      #footer {
+        /* width: 100%; */
+        height: 60px;
+        /* background-color: aquamarine; */
+        color: red;
+        display: flex;
+        justify-content: center;
+
+        align-items: center;
+        padding: 10px 20px;
+      }
+      .bold {
+        padding: 0 5px;
+      }
+      a {
+        text-decoration: none;
+        color: red;
+      }
     </style>
   </head>
   <body>
-    <div id="left">
-      <video id="cameraView" autoplay muted></video>
-      <video id="recordedVideo" controls></video>
-    </div>
-    <div id="right">
-      <h3>Video Recording</h3>
-      <p>
-        For your personality traits assessment, we need your video recording.
-        You are requested to face the camera as if you are talking to your
-        friends and give us a short introduction about yourself in
-        <strong>15 seconds</strong>. The video recording will stop automatically
-        after 18 sec
-      </p>
-      <button id="startRecording" onclick="startRecording()">
-        Start Recording
-      </button>
-      <button id="stopRecording" onclick="stopRecording()">
-        Stop Recording
-      </button>
+    <div class="container">
+      <div class="uper">
+        <div id="left">
+          <video id="cameraView" autoplay muted></video>
+          <video id="recordedVideo" controls></video>
+        </div>
+        <div id="right">
+          <h3>Video Recording</h3>
+          <p>
+            For your personality traits assessment, we need your video
+            recording. You are requested to face the camera as if you are
+            talking to your friends and give us a short introduction about
+            yourself in
+            <strong>15 seconds</strong>. The video recording will stop
+            automatically after 18 seconds.
+          </p>
+
+          <button id="startRecording" onclick="startRecording()">
+            Start Recording
+          </button>
+          <button id="stopRecording" onclick="stopRecording()">
+            Stop Recording
+          </button>
+        </div>
+      </div>
+      <div id="footer">
+        Thank you for recording your video. To see the results press
+        <b class="bold">
+          <a href="{% url 'testResults' %}">Results button</a>
+        </b>
+      </div>
     </div>
     <script>
       const startRecordingButton = document.getElementById("startRecording");
       const stopRecordingButton = document.getElementById("stopRecording");
       const cameraView = document.getElementById("cameraView");
+
       const recordedVideo = document.getElementById("recordedVideo"); // Get the recorded video element
+      const footerView = document.getElementById("footer");
       let mediaRecorder;
       let chunks = [];
+      window.onload = function () {
+        initializeCamera();
+        footerView.style.display = "none";
+      };
+
+      async function initializeCamera() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true,
+          });
+          const cameraView = document.getElementById("cameraView");
+          cameraView.srcObject = stream;
+          cameraView.style.display = "block";
+        } catch (error) {
+          console.error("Error accessing media devices: ", error);
+        }
+      }
 
       async function startRecording() {
         try {
@@ -145,6 +200,7 @@
             cameraView.src = url; // Set the recorded video as the source of the camera view
             cameraView.style.display = "block"; // Make the camera view visible again
             startRecordingButton.style.display = "inline-block";
+            footerView.style.display = "flex";
             stopRecordingButton.style.display = "none"; // Hide the stop button when recording stops
             chunks = [];
             // Stop the camera stream
