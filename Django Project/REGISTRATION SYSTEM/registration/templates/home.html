@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Design by foolishdeveloper.com -->
+    <title>Home Page</title>
+    <!-- Bootstrap CDN -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!--Stylesheet-->
+    <style media="screen">
+      body {
+        background-color: #080710;
+        color: #ffffff;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: space-between;
+        height: 100vh;
+      }
+      .box {
+        justify-content: center;
+        text-align: center;
+      }
+      .content {
+        text-align: center;
+      }
+      .content h1 {
+        font-size: 48px;
+        font-weight: 500;
+        margin-bottom: 30px;
+      }
+      .btn {
+        border-radius: 15px;
+
+        font-weight: 600;
+        border: none;
+        background-color: #ffffff;
+        cursor: pointer;
+      }
+      .btn:hover {
+        border: 2px solid #fff;
+        color: #fff !important;
+        background-color: #080710;
+      }
+
+      .btn a {
+        text-decoration: none;
+      }
+      .content p {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+      .about p {
+        text-align: center;
+      }
+      .navbar {
+        background-color: #080710 !important;
+        margin-bottom: 20px; /* Adjust margin to create space between navbar and content */
+      }
+
+      .navbar-brand {
+        color: #ffffff !important;
+        font-weight: 600;
+      }
+
+      .navbar-nav .nav-link {
+        color: #ffffff !important;
+      }
+
+      .footer {
+        background-color: #080710;
+        color: #ffffff;
+        padding: 30px 0;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <a class="navbar-brand" href="#">Personality Traits Assessment</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'testPersonality' %}"
+                  >Test your personality</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="box">
+        <div class="content">
+          <h1>Welcome</h1>
+          <div class="about">
+            <p>
+              A Web app which is developed for testing the traits of a candidate
+              named as "Personality Traits Assessment", by using Deep Learning
+              Models. Models are trained to prediact Big Five traits from a
+              video of a candidate.<br />
+            </p>
+          </div>
+          <button class="btn">
+            <a href="{% url 'testPersonality' %}">Test your personality</a>
+          </button>
+          <button class="btn">
+            <a href="{% url 'about' %}">About</a>
+          </button>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>&copy; 2024 Personality Traits Assessment. All rights reserved.</p>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS, placed at the end of the document for faster loading -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
